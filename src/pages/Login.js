@@ -5,7 +5,7 @@ import { MyContext}  from '../context/MyContext';
 import { baseAPI } from '../config/axios';
 
 function Login() {
-  const { setGlobalName, setGlobalAccountId } = useContext(MyContext);
+  const { setGlobalToken, setGlobalName, setGlobalAccountId } = useContext(MyContext);
   const [accountId, setAccountId] = useState('');
   const [name, setName] = useState('');
   const [documentNumber, setDocumentNumber] = useState('');
@@ -34,8 +34,9 @@ function Login() {
         );
 
         if (status === 201) {
+          setGlobalToken(data.token);
           setGlobalName(name);
-          setGlobalAccountId(data.accountId);
+          setGlobalAccountId(data.client.accountId);
           navigate('/home');
         }
 
@@ -48,7 +49,7 @@ function Login() {
     const login = async () => {
       try {
         const {
-          status,
+          status, data
         } = await baseAPI.post(
           '/login',
           {
@@ -61,7 +62,12 @@ function Login() {
           },
         );
 
+        console.log('data', data);
+
         if (status === 200) {
+          setGlobalToken(data.token);
+          setGlobalName(data.client.name);
+          setGlobalAccountId(accountId);
           navigate('/home');
         }
 
