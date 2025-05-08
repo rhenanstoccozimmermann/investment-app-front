@@ -6,6 +6,7 @@ function Provider({ children }) {
   const [globalToken, setGlobalToken] = useState('');
   const [globalName, setGlobalName] = useState('');
   const [globalAccountId, setGlobalAccountId] = useState('');
+  const [assets, setAssets] = useState([]);
 
   const contextValue = {
     globalToken,
@@ -14,6 +15,8 @@ function Provider({ children }) {
     setGlobalName,
     globalAccountId,
     setGlobalAccountId,
+    assets,
+    setAssets,
   }
 
   return (

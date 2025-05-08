@@ -3,6 +3,8 @@ import { LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext} from '../context/MyContext';
 import { baseAPI } from '../config/axios';
+import TradingView from '../components/trading/TradingView';
+import Portfolio from '../components/portfolio/Portfolio';
 
 function Home() {
   const { setGlobalToken, globalToken, globalName, globalAccountId } = useContext(MyContext);
@@ -74,7 +76,10 @@ function Home() {
             <div className="mx-right px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
               <h1 className="px-4 sm:px-6 lg:px-8 text-1xl text-gray-900">{`Conta nº ${globalAccountId} - ${globalName}`}</h1>
               <button
-                onClick={() => navigate('/login')}
+                onClick={() => {
+                  navigate('/login');
+                  window.location.reload();
+                }}
                 className="flex items-center text-gray-600 hover:text-gray-900"
               >
                 <LogOut className="h-5 w-5 mr-2" />
@@ -83,6 +88,14 @@ function Home() {
             </div>
           </div>
         </header>
+        <div className="mt-8 bg-white shadow rounded-lg flex justify-center items-start">
+          <div className="lg:col-span-2 space-y-6">
+            <TradingView />
+          </div>
+          <div className="space-y-6">
+            <Portfolio />
+          </div>
+        </div>
         <div className="mt-8 bg-white shadow rounded-lg flex justify-center items-center">
           <div className="px-4 py-5 sm:p-6 flex justify-center items-center flex-col">
             <h3 className="text-lg leading-6 font-medium text-gray-900">

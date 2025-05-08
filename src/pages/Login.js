@@ -42,6 +42,7 @@ function Login() {
 
         return;
       } catch (e) {
+        console.log(e);
         return;
       }
     };
@@ -62,7 +63,7 @@ function Login() {
           },
         );
 
-        console.log('data', data);
+        console.log(data.token);
 
         if (status === 200) {
           setGlobalToken(data.token);
@@ -73,6 +74,7 @@ function Login() {
 
         return;
       } catch (e) {
+        console.log(e);
         return;
       }
     };
