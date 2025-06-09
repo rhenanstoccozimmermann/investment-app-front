@@ -18,5 +18,3 @@
 ## 1. Introdução
 
 Trata-se do frontend de um app de investimentos.
-
-Em construção.
